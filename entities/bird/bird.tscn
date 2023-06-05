@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp62pgqgybx7o"]
+
+[ext_resource type="Script" path="res://entities/bird/bird.gd" id="1_q8lu6"]
+[ext_resource type="Texture2D" uid="uid://drf81jk7yyl4h" path="res://entities/bird/bird.png" id="2_n8ke7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_irgyh"]
+friction = 5.0
+bounce = 0.3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de7t7"]
+size = Vector2(46, 44)
+
+[node name="Bird" type="RigidBody2D" groups=["bird", "player"]]
+physics_material_override = SubResource("PhysicsMaterial_irgyh")
+max_contacts_reported = 1
+contact_monitor = true
+freeze_mode = 1
+script = ExtResource("1_q8lu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_de7t7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n8ke7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

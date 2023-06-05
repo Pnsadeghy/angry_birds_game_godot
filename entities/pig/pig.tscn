@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvp2e2es7pydg"]
+
+[ext_resource type="Texture2D" uid="uid://8qku7yklks8k" path="res://icon.svg" id="1_qqw4o"]
+[ext_resource type="Script" path="res://entities/pig/pig.gd" id="1_ucr32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ov3b3"]
+size = Vector2(59, 60)
+
+[node name="Pig" type="RigidBody2D"]
+max_contacts_reported = 1
+script = ExtResource("1_ucr32")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ov3b3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qqw4o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://4hekq4pej5gv"]
+
+[ext_resource type="Texture2D" uid="uid://cnqvp8quph2fk" path="res://entities/block/block.png" id="1_e3hr3"]
+[ext_resource type="Script" path="res://entities/block/block.gd" id="1_j6b3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h30g"]
+size = Vector2(20, 115)
+
+[node name="block" type="RigidBody2D" groups=["blocks"]]
+mass = 5.0
+max_contacts_reported = 1
+script = ExtResource("1_j6b3x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_e3hr3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_7h30g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

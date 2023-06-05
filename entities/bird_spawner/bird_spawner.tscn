@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cppqm8baciduo"]
+
+[ext_resource type="Script" path="res://entities/bird_spawner/bird_spawner.gd" id="1_y515s"]
+
+[node name="bird_spawner" type="Node"]
+script = ExtResource("1_y515s")

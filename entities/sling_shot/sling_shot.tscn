@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxkr6bklax0r8"]
+
+[ext_resource type="Texture2D" uid="uid://c1h3ddu20wvck" path="res://entities/sling_shot/Slingshot.png" id="1_7syye"]
+[ext_resource type="Script" path="res://entities/sling_shot/sling_shot.gd" id="1_klbsg"]
+[ext_resource type="Texture2D" uid="uid://cwhjcjvkebl42" path="res://entities/sling_shot/SlingshotTop.png" id="3_msuwn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8v5ld"]
+radius = 78.0064
+
+[node name="SlingShot" type="Node2D"]
+script = ExtResource("1_klbsg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -79)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7syye")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -79)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_msuwn")
+
+[node name="LeftLine" type="Line2D" parent="."]
+position = Vector2(-5, -121)
+points = PackedVector2Array(21, -5, 6, -5)
+width = 5.0
+default_color = Color(0.0745098, 0.0509804, 0.0235294, 1)
+
+[node name="RightLine" type="Line2D" parent="."]
+position = Vector2(27, -122)
+points = PackedVector2Array(-42, -4, -26, -4)
+width = 5.0
+default_color = Color(0.0666667, 0.054902, 0.0235294, 1)
+
+[node name="TouchArea" type="Area2D" parent="."]
+position = Vector2(1, 137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea"]
+position = Vector2(0, -263)
+shape = SubResource("CircleShape2D_8v5ld")
+
+[node name="CenterOfSlingShot" type="Marker2D" parent="."]
+position = Vector2(0, -126)
+
+[node name="ShotArc" type="Line2D" parent="."]
+width = 5.0
+default_color = Color(1, 1, 1, 0.443137)
+
+[connection signal="input_event" from="TouchArea" to="." method="_on_touch_area_input_event"]
